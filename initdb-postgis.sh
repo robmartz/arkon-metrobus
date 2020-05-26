@@ -32,3 +32,12 @@ psql -c "ALTER SYSTEM SET max_worker_processes = '2';"
 psql -c "ALTER SYSTEM SET max_parallel_workers_per_gather = '1';"
 psql -c "ALTER SYSTEM SET max_parallel_workers = '2';"
 
+
+# add postgrereader user
+psql -c "CREATE USER metro_user WITH PASSWORD 'passwd';"
+
+# create databases
+psql -c "CREATE DATABASE gis;"
+
+# add extensions to databases
+psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
