@@ -33,6 +33,9 @@ donde veremos una salida como la siguiente:
 ONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS              PORTS                    NAMES
 304b266fa014        metrobus             "docker-entrypoint.s…"   4 minutes ago       Up 3 minutes        0.0.0.0:9595->5432/tcp   mbus_db_container
 ```
+
+## Contenedor Scala
+
 Con esto estará corriendo el contenedor de la base de datos. A continuación ejecutamos el siguiente comando para levantar el contendor que tiene el código que hace consultas a la base de datos Postgres.
 
 ```console
