@@ -51,6 +51,9 @@ A continuación ejecutamos la siguiente línea:
 ```console
 root@50254eb0118f:~# cd /src/code/ && sbt run > resultado.txt
 ```
+
+## Resultados
+
 Al iniciar el contenedor con las dependencias necesarias se creo un volumen de datos, en este caso la carpeta `src/` del repositorio, de este modo, fuera del contenedor podemos consultar el archivo de texto creado con los resultados de la consulta a la base de datos. Una fracción de dicho archivo es:
 
 ```**********************************************
