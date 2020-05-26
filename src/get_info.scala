@@ -52,7 +52,7 @@ try {
     val query_1 = q1_1 + q2_1 + q3_1 + q4_1
     val resultSet_1 = statement.executeQuery(query_1)
     println("**********************************************")
-    println("           Unidades por alcaldía:             ")
+    println("     Unidades disponibles por alcaldía:       ")
     println("**********************************************")
     while ( resultSet_1.next() ) {
         val alcaldia = resultSet_1.getString("nomgeo")
@@ -65,6 +65,31 @@ try {
     // Closing database connection
     connection.close()
 }
+
+try {
+    // Database connection
+    Class.forName(driver)
+    connection = DriverManager.getConnection(url, username, password)
+    val statement = connection.createStatement()
+    val q1_3 = "SELECT \"lineas-metrobus\".name , \"limite-de-las-alcaldias\".nomgeo "
+    val q2_3 = "FROM \"lineas-metrobus\", \"limite-de-las-alcaldias\" "
+    val q3_3 = "WHERE St_Intersects(\"lineas-metrobus\".geom, \"limite-de-las-alcaldias\".geom) = True "
+    val q4_3 = "ORDER BY \"limite-de-las-alcaldias\".nomgeo "
+    val query_3 = q1_3 + q2_3 + q3_3 + q4_3
+    val resultSet_3 = statement.executeQuery(query_3)
+    println("**********************************************")
+    println("          Rutas por alcaldía:            ")
+    println("**********************************************")
+    while ( resultSet_3.next() ) {
+        val ruta = resultSet_3.getString("name")
+        val alcaldia = resultSet_3.getString("nomgeo")
+        println("> " + ruta + " \t\t| " + alcaldia )
+    }
+} catch {
+    case e: Exception => e.printStackTrace
+} finally {
+    // Closing database connection
+    connection.close()
 
 try {
     // Database connection
@@ -91,15 +116,6 @@ try {
     // Closing database connection
     connection.close()
 }
-
-
-
-
-
-
-
-
-
-
+}
 }
 }
