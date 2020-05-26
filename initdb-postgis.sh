@@ -5,17 +5,7 @@ set -e
 # Perform all actions as $POSTGRES_USER
 export PGUSER="$POSTGRES_USER"
 
-# add postgrereader user
-psql -c "CREATE USER mbus_user WITH PASSWORD 'mbus123';"
-
-# create databases
-psql -c "CREATE DATABASE gis;"
-
-# add extensions to databases
-psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-
 # DB container configuration
-
 psql -c "ALTER SYSTEM SET max_connections = '150';"
 psql -c "ALTER SYSTEM SET shared_buffers = '1GB';"
 psql -c "ALTER SYSTEM SET effective_cache_size = '3GB';"
@@ -33,7 +23,7 @@ psql -c "ALTER SYSTEM SET max_parallel_workers_per_gather = '1';"
 psql -c "ALTER SYSTEM SET max_parallel_workers = '2';"
 
 # add postgrereader user
-psql -c "CREATE USER metro_user WITH PASSWORD 'passwd';"
+psql -c "CREATE USER mbus_user WITH PASSWORD 'mbus123';"
 
 # create databases
 psql -c "CREATE DATABASE gis;"
