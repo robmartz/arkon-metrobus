@@ -5,7 +5,10 @@
 
 Este repositorio contiene el pipeline para analizar datos abiertos del Metrobus de la Ciudad de México. En particular, dichos datos han sido puestos en un contenedor docker en una base de datos georeferenciada PotsgreSQL+PostGIS. El código scala para hacer las consultas a dicha base de datos se crea de manera independiante aunque enlazados a través de la misma `network`. 
 
-Move along.
+
+![image](https://github.com/robmartz/arkon-metrobus/blob/master/image/metrobus2.png?raw=true)
+
+
 ## Dase de datos
 
 Para correr el análisis, basta ejecutar el siguiente comando en la carpeta donde se ha clonado el repositorio:
