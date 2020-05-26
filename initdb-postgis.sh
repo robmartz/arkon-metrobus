@@ -32,7 +32,6 @@ psql -c "ALTER SYSTEM SET max_worker_processes = '2';"
 psql -c "ALTER SYSTEM SET max_parallel_workers_per_gather = '1';"
 psql -c "ALTER SYSTEM SET max_parallel_workers = '2';"
 
-
 # add postgrereader user
 psql -c "CREATE USER metro_user WITH PASSWORD 'passwd';"
 
@@ -41,3 +40,9 @@ psql -c "CREATE DATABASE gis;"
 
 # add extensions to databases
 psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+
+# add shapefiles to database
+shp2pgsql -I -s 4326 /src/metrobus/data/estaciones-metrobus.shp estaciones-metrobus | psql -U metro_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/limite-de-las-alcaldias.shp limite-de-las-alcaldias | psql -U metro_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/lineas-metrobus.shp lineas-metrobus | psql -U metro_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/prueba_fetchdata_metrobus.shp prueba_fetchdata_metrobus | psql -U metro_user -d gis
