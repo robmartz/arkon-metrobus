@@ -2,12 +2,24 @@ version: '3'
 
 services:
   postgres:
+    image: metrobus
+    container_name: mbus_db_container
+    restart: always
+    env_file: .env
+    volumes: 
+      - postgres-data:/var/lib/postgresql/data
     build:
       context: .
       dockerfile: Dockerfile
-    image: arkon
-    container_name: mbus_db_container
+    networks:
+      - postgres_conn
     ports:
       - '9595:5432'
-    env_file: .env
+volumes:
+  postgres-data:
+
+networks:
+  postgres_conn:
+    driver: bridge
+    
 
