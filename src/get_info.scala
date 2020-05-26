@@ -13,24 +13,26 @@ object ScalaJdbcConnectSelect {
     val url = "jdbc:postgresql://mbus_db_container:5432/gis"
     val username = "mbus_user"
     val password = "mbus123"
-
     var connection:Connection = null
+    try {
+    // Database connection
+    
     Class.forName(driver)
     connection = DriverManager.getConnection(url, username, password)
     val statement = connection.createStatement()
     val query = "SELECT srtext FROM spatial_ref_sys"
     val resultSet = statement.executeQuery(query)
+    
     while ( resultSet.next() ) {
         val srt = resultSet.getString("srtext")
         println("> " + srt )
     }
+	} 
+	catch {
+    	case e: Exception => e.printStackTrace
+	} finally {
+    // Closing database connection
     connection.close()
+	}
   }
 }
-
-
-
-
-    
-
-
