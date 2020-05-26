@@ -39,9 +39,17 @@ ONTAINER ID        IMAGE                COMMAND                  CREATED        
 Con esto estará corriendo el contenedor de la base de datos. A continuación ejecutamos el siguiente comando para levantar el contendor que tiene el código que hace consultas a la base de datos Postgres.
 
 ```console
-foo@bar:~$ docker run -it --rm --network=arkon-metrobus_postgres_conn -v $(pwd)/src:/src/code hseeberger/scala-sbt:8u222_1.3.5_2.13.1 bash
+foo@bar:~$ docker run -it --rm --network=arkon-metrobus_postgres_conn --name=scala_container -v $(pwd)/src:/src/code hseeberger/scala-sbt:8u222_1.3.5_2.13.1 bash
 ```
-Uva vez ejecutado el comando, estaremos dentro del contenedor que tiene el código scala para hacer consultas a la base de datos, veremos algo como esto:
+Podemos verificar en otra consola que ambos contenedores están funcionando y se encuantran en la misma `network`. Si ejecutamos `$ docker container ls` veremos una salida en consola como la siguiente:
+
+```console
+CONTAINER ID        IMAGE                                     COMMAND                  CREATED             STATUS              PORTS                    NAMES
+1fa5dc76ccb2        hseeberger/scala-sbt:8u222_1.3.5_2.13.1   "bash"                   9 seconds ago       Up 4 seconds                                 scala_container
+ab07f96dafaa        metrobus                                  "docker-entrypoint.s…"   20 seconds ago      Up 15 seconds       0.0.0.0:9595->5432/tcp   mbus_db_container
+```
+
+Una vez ejecutado el comando que levanta el contenedor, estaremos dentro del contenedor que tiene el código scala para hacer consultas a la base de datos, veremos algo como esto:
 
 ```console
 root@50254eb0118f:~#
