@@ -65,5 +65,41 @@ try {
     // Closing database connection
     connection.close()
 }
+
+try {
+    // Database connection
+    Class.forName(driver)
+    connection = DriverManager.getConnection(url, username, password)
+    val statement = connection.createStatement()
+    val q1_2 = "SELECT \"estaciones-metrobus\".nombre, \"limite-de-las-alcaldias\".nomgeo "
+    val q2_2 = "FROM \"estaciones-metrobus\", \"limite-de-las-alcaldias\" "
+    val q3_2 = "WHERE ST_WITHIN(\"estaciones-metrobus\".geom, \"limite-de-las-alcaldias\".geom) = True "
+    val q4_2 = "ORDER BY \"limite-de-las-alcaldias\".nomgeo "
+    val query_2 = q1_2 + q2_2 + q3_2 + q4_2
+    val resultSet_2 = statement.executeQuery(query_2)
+    println("**********************************************")
+    println("          Estaciones por alcaldía:            ")
+    println("**********************************************")
+    while ( resultSet_2.next() ) {
+        val alcaldia = resultSet_2.getString("nomgeo")
+        val estacion = resultSet_2.getString("nombre")
+        println("> " + alcaldia + " \t| " + estacion )
+    }
+} catch {
+    case e: Exception => e.printStackTrace
+} finally {
+    // Closing database connection
+    connection.close()
+}
+
+
+
+
+
+
+
+
+
+
 }
 }
