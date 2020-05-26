@@ -26,17 +26,44 @@ object ScalaJdbcConnectSelect {
     val q4 = "ORDER BY \"limite-de-las-alcaldias\".nomgeo "
     val query = q1 + q2 + q3 + q4
     val resultSet = statement.executeQuery(query)
-    
+    println("**********************************************")
+    println("           Alcaldías disponibles:  ")
+    println("**********************************************")
     while ( resultSet.next() ) {
         val alcaldias = resultSet.getString("nomgeo")
         println("> " + alcaldias )
     }
-	} 
-	catch {
-    	case e: Exception => e.printStackTrace
-	} finally {
-		// Closing database connection
-		connection.close()
-	}
+} catch {
+	case e: Exception => e.printStackTrace
+} finally {
+	// Closing database connection
+	connection.close()
+}
+
+try {
+    // Database connection
+    Class.forName(driver)
+    connection = DriverManager.getConnection(url, username, password)
+    val statement = connection.createStatement()
+    val q1_1 = "SELECT \"prueba_fetchdata_metrobus\".vehicle_id , \"limite-de-las-alcaldias\".nomgeo "
+    val q2_1 = "FROM \"prueba_fetchdata_metrobus\", \"limite-de-las-alcaldias\" "
+    val q3_1 = "WHERE ST_WITHIN(\"prueba_fetchdata_metrobus\".geom, \"limite-de-las-alcaldias\".geom) = True "
+    val q4_1 = "ORDER BY \"limite-de-las-alcaldias\".nomgeo "
+    val query_1 = q1_1 + q2_1 + q3_1 + q4_1
+    val resultSet_1 = statement.executeQuery(query_1)
+    println("**********************************************")
+    println("           Unidades por alcaldía:             ")
+    println("**********************************************")
+    while ( resultSet_1.next() ) {
+        val alcaldia = resultSet_1.getString("nomgeo")
+        val unidad = resultSet_1.getString("vehicle_id")
+        println("> " + alcaldia + " \t| " + unidad )
+    }
+} catch {
+    case e: Exception => e.printStackTrace
+} finally {
+    // Closing database connection
+    connection.close()
+}
 }
 }
