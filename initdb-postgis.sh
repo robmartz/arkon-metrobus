@@ -32,7 +32,7 @@ psql -c "CREATE DATABASE gis;"
 psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
 
 # add shapefiles to database
-shp2pgsql -I -s 4326 /src/metrobus/data/estaciones-metrobus.shp estaciones-metrobus | psql -U metro_user -d gis
-shp2pgsql -I -s 4326 /src/metrobus/data/limite-de-las-alcaldias.shp limite-de-las-alcaldias | psql -U metro_user -d gis
-shp2pgsql -I -s 4326 /src/metrobus/data/lineas-metrobus.shp lineas-metrobus | psql -U metro_user -d gis
-shp2pgsql -I -s 4326 /src/metrobus/data/prueba_fetchdata_metrobus.shp prueba_fetchdata_metrobus | psql -U metro_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/station/estaciones-metrobus.shp estaciones-metrobus | psql -U mbus_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/mayoralty/limite-de-las-alcaldias.shp limite-de-las-alcaldias | psql -U mbus_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/metrobus_lines/lineas-metrobus.shp lineas-metrobus | psql -U mbus_user -d gis
+shp2pgsql -I -s 4326 /src/metrobus/data/units_position/prueba_fetchdata_metrobus.shp prueba_fetchdata_metrobus | psql -U mbus_user -d gis
