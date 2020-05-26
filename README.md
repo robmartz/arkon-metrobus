@@ -41,7 +41,7 @@ Con esto estará corriendo el contenedor de la base de datos. A continuación ej
 ```console
 foo@bar:~$ docker run -it --rm --network=arkon-metrobus_postgres_conn --name=scala_container -v $(pwd)/src:/src/code hseeberger/scala-sbt:8u222_1.3.5_2.13.1 bash
 ```
-Podemos verificar en otra consola que ambos contenedores están funcionando y se encuantran en la misma `network`. Si ejecutamos `$ docker container ls` veremos una salida en consola como la siguiente:
+Podemos verificar en otra consola que ambos contenedores están funcionando y se encuentran en la misma `network`. Si ejecutamos `$ docker container ls` veremos una salida en consola como la siguiente:
 
 ```console
 CONTAINER ID        IMAGE                                     COMMAND                  CREATED             STATUS              PORTS                    NAMES
@@ -62,7 +62,7 @@ root@50254eb0118f:~# cd /src/code/ && sbt run > resultado.txt
 
 ## Resultados
 
-Al iniciar el contenedor con las dependencias necesarias se creo un volumen de datos, en este caso la carpeta `src/` del repositorio, de este modo, fuera del contenedor podemos consultar el archivo de texto creado con los resultados de la consulta a la base de datos. Una fracción de dicho archivo es:
+Al iniciar el contenedor con las dependencias necesarias se creó un volumen de datos, en este caso la carpeta `src/` del repositorio, de este modo, fuera del contenedor podemos consultar el archivo de texto creado con los resultados de la consulta a la base de datos. Una fracción de dicho archivo es:
 
 ```**********************************************
            Alcaldías disponibles:  
