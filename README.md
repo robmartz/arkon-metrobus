@@ -9,7 +9,7 @@ Este repositorio contiene el pipeline para analizar datos abiertos del Metrobus 
 ![image](https://github.com/robmartz/arkon-metrobus/blob/master/image/metrobus2.png?raw=true)
 
 
-## Dase de datos
+## Base de datos
 
 Para correr el análisis, basta ejecutar el siguiente comando en la carpeta donde se ha clonado el repositorio:
 
